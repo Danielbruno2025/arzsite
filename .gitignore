@@ -1,0 +1,15 @@
+# IDE/Editor folders
+.vscode/
+.idea/
+.gemini/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
