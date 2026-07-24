@@ -347,10 +347,9 @@ function initMusicEmbed() {
             setTimeout(() => {
                 placeholder.style.display = 'none';
                 
-                // Spotify Embed Player for "The Five Sigils"
-                // Using Cogumelo Records / Black Metal album visual container style
+                // Spotify Embed Player for Agaurez track
                 const iframe = document.createElement('iframe');
-                iframe.src = "https://open.spotify.com/embed/album/0QSJYek6MTmoAGeMsChOxQ?utm_source=generator&theme=0";
+                iframe.src = "https://open.spotify.com/embed/track/2Y1dPCJ2QQqtnuRSwzUhoA?utm_source=generator&theme=0";
                 iframe.width = "100%";
                 iframe.height = "352px";
                 iframe.frameBorder = "0";

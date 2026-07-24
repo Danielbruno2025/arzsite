@@ -1,0 +1,561 @@
+/* ==========================================================================
+   AGAUREZ - Coming Soon / Splash Page (Black Metal 3D Edition)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Metal+Mania&family=Montserrat:wght@300;400;600;800&family=UnifrakturMaguntia&display=swap');
+
+:root {
+    --bg-dark: #020202;
+    --color-crimson: #900C3F;
+    --color-crimson-bright: #c70039;
+    --color-gold: #c5a059;
+    --color-purple: #4a154b;
+    --color-text-main: #e2e2e2;
+    --color-text-muted: #888888;
+    
+    --font-gothic: 'UnifrakturMaguntia', 'Metal Mania', cursive, serif;
+    --font-metal: 'Metal Mania', 'Cinzel', serif;
+    --font-cinzel: 'Cinzel', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    user-select: none;
+}
+
+/* 3D WebGL Canvas */
+#canvas-3d {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* CRT VHS Scanlines Overlay */
+.vhs-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.45) 50%
+    );
+    background-size: 100% 4px;
+    opacity: 0.85;
+}
+
+.vhs-overlay::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: rgba(18, 16, 16, 0.08);
+    opacity: 0;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.12; }
+    50% { opacity: 0.05; }
+    100% { opacity: 0.15; }
+}
+
+/* Splash Container Overlay */
+.splash-container {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    background: radial-gradient(circle at center, rgba(2, 2, 2, 0.3) 0%, rgba(2, 2, 2, 0.85) 80%);
+}
+
+/* Header Brand */
+.splash-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.band-subtitle {
+    font-family: var(--font-cinzel);
+    font-size: 0.85rem;
+    letter-spacing: 6px;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+    animation: pulseGlow 3s infinite alternate;
+}
+
+.band-title {
+    font-family: var(--font-gothic);
+    font-size: 4rem;
+    line-height: 1;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(144, 12, 63, 0.8), 0 0 40px rgba(200, 0, 0, 0.4);
+    letter-spacing: 4px;
+    margin-top: 0.2rem;
+}
+
+/* Central Content */
+.splash-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 650px;
+    width: 100%;
+    margin: auto 0;
+    backdrop-filter: blur(4px);
+    background: rgba(10, 10, 12, 0.6);
+    border: 1px solid rgba(144, 12, 63, 0.3);
+    padding: 2.5rem 2rem;
+    border-radius: 4px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 25px rgba(144, 12, 63, 0.15);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 1.2rem;
+    background: rgba(144, 12, 63, 0.2);
+    border: 1px solid var(--color-crimson);
+    border-radius: 50px;
+    font-family: var(--font-cinzel);
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: var(--color-text-main);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.status-badge i {
+    color: var(--color-crimson-bright);
+    font-size: 0.7rem;
+    animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+.headline {
+    font-family: var(--font-cinzel);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 2px;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+
+.description {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+/* Subscription Form */
+.notify-form {
+    display: flex;
+    width: 100%;
+    max-width: 480px;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.notify-input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 0.85rem 1.2rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    border-radius: 2px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.notify-input:focus {
+    border-color: var(--color-crimson);
+    box-shadow: 0 0 15px rgba(144, 12, 63, 0.4);
+}
+
+.notify-btn {
+    background: linear-gradient(135deg, var(--color-crimson) 0%, #50001a 100%);
+    color: #ffffff;
+    border: 1px solid var(--color-crimson-bright);
+    padding: 0.85rem 1.6rem;
+    font-family: var(--font-cinzel);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.notify-btn:hover {
+    background: linear-gradient(135deg, var(--color-crimson-bright) 0%, var(--color-crimson) 100%);
+    box-shadow: 0 0 20px rgba(199, 0, 57, 0.6);
+    transform: translateY(-2px);
+}
+
+.form-feedback {
+    display: none;
+    margin-top: 1rem;
+    font-family: var(--font-cinzel);
+    font-size: 0.85rem;
+    color: var(--color-gold);
+    letter-spacing: 1px;
+}
+
+/* Footer / Social links */
+.splash-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-bar {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.social-link {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(15, 15, 18, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--color-text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    color: #ffffff;
+    background: var(--color-crimson);
+    border-color: var(--color-crimson-bright);
+    box-shadow: 0 0 15px rgba(199, 0, 57, 0.6);
+    transform: translateY(-3px) scale(1.08);
+}
+
+.footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.preview-link {
+    font-family: var(--font-cinzel);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.preview-link:hover {
+    color: var(--color-gold);
+    text-shadow: 0 0 8px rgba(197, 160, 89, 0.6);
+}
+
+.copyright {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .band-title {
+        font-size: 2.8rem;
+    }
+
+    .headline {
+        font-size: 1.4rem;
+    }
+
+    .splash-content {
+        padding: 1.8rem 1.2rem;
+    }
+
+    .notify-form {
+        flex-direction: column;
+    }
+
+    .notify-btn {
+        justify-content: center;
+    }
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.7; text-shadow: 0 0 5px rgba(197, 160, 89, 0.2); }
+    100% { opacity: 1; text-shadow: 0 0 15px rgba(197, 160, 89, 0.7); }
+}
+
+/* ==========================================================================
+   Floating Audio Control & Streaming Platform Selector Widget
+   ========================================================================== */
+.audio-widget-container {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.audio-toggle-btn {
+    background: rgba(10, 10, 14, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    color: var(--color-text-main);
+    padding: 0.6rem 1.1rem;
+    border-radius: 30px;
+    font-family: var(--font-cinzel);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+}
+
+.audio-toggle-btn:hover {
+    border-color: var(--color-crimson-bright);
+    background: rgba(144, 12, 63, 0.3);
+    box-shadow: 0 0 25px rgba(199, 0, 57, 0.5);
+    transform: translateY(-2px);
+}
+
+.audio-toggle-btn.playing {
+    border-color: var(--color-crimson-bright);
+    color: #ffffff;
+    box-shadow: 0 0 25px rgba(199, 0, 57, 0.6);
+}
+
+/* Sound wave equalizer animation */
+.sound-wave {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 14px;
+}
+
+.sound-wave span {
+    width: 3px;
+    height: 4px;
+    background: var(--color-gold);
+    border-radius: 1px;
+    transition: height 0.3s ease;
+}
+
+.audio-toggle-btn.playing .sound-wave span {
+    background: var(--color-crimson-bright);
+    animation: soundWave 1.2s infinite ease-in-out alternate;
+}
+
+.audio-toggle-btn.playing .sound-wave span:nth-child(1) { animation-delay: 0.1s; }
+.audio-toggle-btn.playing .sound-wave span:nth-child(2) { animation-delay: 0.3s; }
+.audio-toggle-btn.playing .sound-wave span:nth-child(3) { animation-delay: 0.2s; }
+.audio-toggle-btn.playing .sound-wave span:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes soundWave {
+    0% { height: 4px; }
+    100% { height: 14px; }
+}
+
+/* Streaming Menu Drawer */
+.streaming-menu {
+    display: none;
+    flex-direction: column;
+    margin-top: 0.6rem;
+    background: rgba(8, 8, 12, 0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(144, 12, 63, 0.4);
+    border-radius: 8px;
+    padding: 0.8rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+    width: 220px;
+    animation: fadeInDown 0.3s ease forwards;
+}
+
+.streaming-menu.active {
+    display: flex;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.streaming-title {
+    font-family: var(--font-cinzel);
+    font-size: 0.7rem;
+    color: var(--color-gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    text-align: center;
+}
+
+.streaming-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.stream-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.stream-btn i {
+    font-size: 1rem;
+}
+
+.stream-btn.spotify:hover { background: #1DB954; color: #000; border-color: #1DB954; }
+.stream-btn.youtube:hover { background: #FF0000; color: #fff; border-color: #FF0000; }
+.stream-btn.apple:hover { background: #FA243C; color: #fff; border-color: #FA243C; }
+.stream-btn.deezer:hover { background: #EF5466; color: #fff; border-color: #EF5466; }
+
+/* Hidden Embed Wrap */
+.ambient-player-wrap {
+    position: fixed;
+    bottom: -300px;
+    right: 1.5rem;
+    width: 320px;
+    height: 152px;
+    z-index: 90;
+    transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.ambient-player-wrap.visible {
+    bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .audio-widget-container {
+        top: 1rem;
+        right: 1rem;
+    }
+    .lang-widget-container {
+        top: 1rem;
+        left: 1rem;
+    }
+    .ambient-player-wrap {
+        width: 290px;
+        right: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Language Selector Switcher Widget (PT | EN)
+   ========================================================================== */
+.lang-widget-container {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 100;
+}
+
+.lang-switch {
+    background: rgba(10, 10, 14, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    font-family: var(--font-cinzel);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+}
+
+.lang-btn.active {
+    color: var(--color-gold);
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.6);
+}
+
+.lang-btn:hover {
+    color: #ffffff;
+}
+
+.lang-sep {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.75rem;
+}
+

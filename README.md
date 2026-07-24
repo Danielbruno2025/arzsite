@@ -1,6 +1,6 @@
 # ⛧ AGAUREZ - Official Website ⛧
 
-Site oficial da horda de Black Metal **Agaurez**, originária de Belo Horizonte, Minas Gerais. Este projeto une uma estética visual extrema, obscura e vanguardista a recursos modernos de desenvolvimento web responsivo e suporte multilíngue.
+Site oficial da horda de Black Metal **Agaurez**, originária de Belo Horizonte, Minas Gerais. Domínios oficiais: **[www.agaurez.com](https://www.agaurez.com)** e **[www.agaurez.com.br](https://www.agaurez.com.br)**. Este projeto une uma estética visual extrema, obscura e vanguardista a recursos modernos de desenvolvimento web responsivo e suporte multilíngue.
 
 ---
 
