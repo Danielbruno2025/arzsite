@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMusicEmbed();
     initBookingRitual();
     initLanguageSelector();
+    initGalleryLightbox();
 });
 
 /* ==========================================================================
@@ -543,6 +544,7 @@ function initLanguageSelector() {
             "music-title": "Heresias",
             "music-subtitle": "Obras de Escuridão",
             "music-released": "Lançado por ",
+            "music-latest-badge": "Último Lançamento: Drowned in Absinthe",
             "music-player": "DESPERTAR PLAYER DIGITAL (SPOTIFY)",
             "videos-title": "Manifestações",
             "videos-subtitle": "Projeções de Escuridão e Caos",
@@ -671,6 +673,7 @@ function initLanguageSelector() {
             "music-title": "Heresies",
             "music-subtitle": "Works of Darkness",
             "music-released": "Released by ",
+            "music-latest-badge": "Latest Release: Drowned in Absinthe",
             "music-player": "AWAKEN DIGITAL PLAYER (SPOTIFY)",
             "videos-title": "Projections",
             "videos-subtitle": "Audiovisual Manifestations of Chaos",
@@ -1064,4 +1067,58 @@ function initLanguageSelector() {
         langSelect.value = savedLang;
         changeLanguage(savedLang);
     }
+}
+
+/* ==========================================================================
+   Full Screen Lightbox for Gallery Items
+   ========================================================================== */
+function initGalleryLightbox() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('gallery-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    if (!lightbox || !galleryItems.length) return;
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.querySelector('img');
+            const title = item.querySelector('.gallery-title');
+            const category = item.querySelector('.gallery-category');
+
+            if (img) {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt || 'Agaurez Photo';
+                const titleText = title ? title.textContent : '';
+                const catText = category ? category.textContent : '';
+                lightboxCaption.innerHTML = `<strong>${titleText}</strong>${catText ? ' — ' + catText : ''}`;
+                lightbox.classList.add('active');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+    }
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
 }

@@ -6,6 +6,9 @@
     <meta name="description" content="Site Oficial da horda de Black Metal Agaurez de Belo Horizonte - MG. Acesse em www.agaurez.com e www.agaurez.com.br. Ouça 'Excess Svb-Frequency', confira rituais, galeria e merchandising.">
     <title>AGAUREZ | Website Oficial | Black Metal</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/arz%20logo%20fs%20images.jpg">
+
     <!-- Canonical & SEO Meta Tags -->
     <link rel="canonical" href="https://www.agaurez.com/">
     <meta property="og:type" content="website">
@@ -36,9 +39,7 @@
     <header>
         <div class="nav-container">
             <a href="#hero" class="nav-logo" id="logo-link">
-                <!-- INSERIR_LOGO_VETORIAL_OU_GIF_AQUI -->
-                <img src="assets/arz%20logo%20fs%20images.jpg" alt="Agaurez Logo" id="header-logo-img">
-                <span>AGAUREZ</span>
+                <img src="assets/agaurez_logo.svg" alt="Agaurez Logo" id="header-logo-img">
             </a>
             
             <div class="nav-right">
@@ -46,6 +47,7 @@
                     <li><a href="#hero" data-i18n="nav-home">Início</a></li>
                     <li><a href="#about" data-i18n="nav-about">A Horda</a></li>
                     <li><a href="#music" data-i18n="nav-music">Discografia</a></li>
+<li><a href="#release" data-i18n="nav-release">Release</a></li>
                     <li><a href="#videos" data-i18n="nav-videos">Vídeos</a></li>
                     <li><a href="#tour" data-i18n="nav-tour">Rituais</a></li>
                     <li><a href="#gallery-merch" data-i18n="nav-merch">Merchandising</a></li>
@@ -80,8 +82,10 @@
         
         <div class="hero-content">
             <span class="hero-sub" data-i18n="hero-subtitle">Belo Horizonte Black Metal Horda</span>
-            <!-- Gothic typography title -->
-            <h1 class="hero-title">AGAUREZ</h1>
+            <!-- Original Vector Logo -->
+            <h1 class="hero-logo-heading">
+                <img src="assets/agaurez_logo.svg" alt="AGAUREZ" class="hero-logo-img">
+            </h1>
             
             <!-- Call to action button with hover glow & scaling -->
             <a href="#music" class="btn-cta" data-i18n="hero-cta">Ouça "The Five Sigils"</a>
@@ -112,8 +116,7 @@
                 
                 <!-- Band Photo Container -->
                 <div class="about-image-wrapper">
-                    <!-- INSERIR_GIF_OU_FOTO_ESTILIZADA_DA_BANDA_AQUI -->
-                    <img src="assets/band_members.png" alt="Agaurez Band Members" class="about-image">
+                    <img src="assets/AGAUREZ%20%C2%A9%20Lucas_Souza_1.jpg" alt="Agaurez Horda Belo Horizonte - Foto por Lucas Souza" class="about-image">
                 </div>
             </div>
 
@@ -124,6 +127,9 @@
                     
                     <!-- Member 1 -->
                     <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="assets/V.Cenobite%20Vocals.jpg" alt="V.Cenobite - Vocal" class="member-img">
+                        </div>
                         <div class="member-sigil">⛧</div>
                         <h4 class="member-name">V.Cenobite</h4>
                         <span class="member-role" data-i18n="role-vocals">Vocal</span>
@@ -131,6 +137,9 @@
 
                     <!-- Member 2 -->
                     <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="assets/C.Alok%20Lead%20Guitars.jpg" alt="C.Alok - Guitarra" class="member-img">
+                        </div>
                         <div class="member-sigil">☠</div>
                         <h4 class="member-name">C.Alok</h4>
                         <span class="member-role" data-i18n="role-guitar">Guitarra</span>
@@ -138,6 +147,9 @@
 
                     <!-- Member 3 -->
                     <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="assets/F.Impious%20R.Guitars.jpg" alt="F.Impius - Guitarra" class="member-img">
+                        </div>
                         <div class="member-sigil">✦</div>
                         <h4 class="member-name">F.Impius</h4>
                         <span class="member-role" data-i18n="role-guitar">Guitarra</span>
@@ -145,6 +157,9 @@
 
                     <!-- Member 4 -->
                     <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="assets/arzbanda2.jpg" alt="B.Brvm - Baixo" class="member-img">
+                        </div>
                         <div class="member-sigil">☽</div>
                         <h4 class="member-name">B.Brvm</h4>
                         <span class="member-role" data-i18n="role-bass">Baixo</span>
@@ -152,6 +167,9 @@
 
                     <!-- Member 5 -->
                     <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="assets/D.Hell%20Drums.jpg" alt="D.Hell - Bateria" class="member-img">
+                        </div>
                         <div class="member-sigil">⚔</div>
                         <h4 class="member-name">D.Hell</h4>
                         <span class="member-role" data-i18n="role-drums">Bateria</span>
@@ -173,11 +191,15 @@
             <div class="album-featured">
                 <!-- Album Art Image -->
                 <div class="album-art-wrapper">
-                    <!-- INSERIR_IMAGEM_DE_CAPA_DE_ALBUM_AQUI -->
-                    <img src="assets/album_five_sigils.png" alt="Álbum The Five Sigils - Cover Art" class="album-art">
+                    <img src="assets/album_five_sigils.webp" alt="Álbum The Five Sigils / Drowned in Absinthe - Cover Art" class="album-art">
                 </div>
                 
                 <div class="album-details">
+                    <div class="latest-release-badge">
+                        <i class="fas fa-compact-disc fa-spin"></i>
+                        <span data-i18n="music-latest-badge">Último Lançamento: Drowned in Absinthe</span>
+                    </div>
+
                     <div class="album-title-group">
                         <h3>The Five Sigils</h3>
                         <div class="album-meta"><span data-i18n="music-released">Lançado por </span><span><a href="https://www.cogumelorecords.com/product-page/agaurez-cd-five-sigils" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold-decay); text-decoration: underline;">Cogumelo Records</a></span> | Belo Horizonte</div>
@@ -189,48 +211,55 @@
                             <li class="track-item">
                                 <div class="track-info">
                                     <span class="track-num">I</span>
+                                    <span class="track-name">Drowned in Absinthe <span class="single-tag">Single</span></span>
+                                </div>
+                                <span class="track-duration">04:35</span>
+                            </li>
+                            <li class="track-item">
+                                <div class="track-info">
+                                    <span class="track-num">II</span>
                                     <span class="track-name">Intro (The Awakening)</span>
                                 </div>
                                 <span class="track-duration">01:45</span>
                             </li>
                             <li class="track-item">
                                 <div class="track-info">
-                                    <span class="track-num">II</span>
+                                    <span class="track-num">III</span>
                                     <span class="track-name">The Will To Power</span>
                                 </div>
                                 <span class="track-duration">04:12</span>
                             </li>
                             <li class="track-item">
                                 <div class="track-info">
-                                    <span class="track-num">III</span>
+                                    <span class="track-num">IV</span>
                                     <span class="track-name">A Diabolical Manifesto</span>
                                 </div>
                                 <span class="track-duration">05:30</span>
                             </li>
                             <li class="track-item">
                                 <div class="track-info">
-                                    <span class="track-num">IV</span>
+                                    <span class="track-num">V</span>
                                     <span class="track-name">Carcosa</span>
                                 </div>
                                 <span class="track-duration">04:48</span>
                             </li>
                             <li class="track-item">
                                 <div class="track-info">
-                                    <span class="track-num">V</span>
+                                    <span class="track-num">VI</span>
                                     <span class="track-name">Serpents</span>
                                 </div>
                                 <span class="track-duration">06:02</span>
                             </li>
                             <li class="track-item">
                                 <div class="track-info">
-                                    <span class="track-num">VI</span>
+                                    <span class="track-num">VII</span>
                                     <span class="track-name">Spiteful Catharsis</span>
                                 </div>
                                 <span class="track-duration">05:15</span>
                             </li>
                             <li class="track-item">
                                 <div class="track-info">
-                                    <span class="track-num">VII</span>
+                                    <span class="track-num">VIII</span>
                                     <span class="track-name">Outro (Misanthropic Moonlight)</span>
                                 </div>
                                 <span class="track-duration">02:10</span>
@@ -328,15 +357,63 @@
             <div class="gallery-grid">
                 
                 <div class="gallery-item">
-                    <img src="assets/band_members.png" alt="Concerto Agaurez" class="gallery-img">
+                    <img src="assets/AGAUREZ%20%C2%A9%20Lucas_Souza_1.jpg" alt="A Horda Oculta - Foto por Lucas Souza" class="gallery-img">
                     <div class="gallery-overlay">
-                        <div class="gallery-title" data-i18n="gallery-item-1-title">A Horda Oculta</div>
-                        <div class="gallery-category" data-i18n="gallery-item-1-cat">Retrato</div>
+                        <div class="gallery-title">A Horda Oculta</div>
+                        <div class="gallery-category">Retrato (Foto: Lucas Souza)</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/AGAUREZ%20%C2%A9%20Danilo_Okuma_2.jpeg" alt="Rito Ao Vivo - Foto por Danilo Okuma" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Manifestação Oculta</div>
+                        <div class="gallery-category">Ao Vivo (Foto: Danilo Okuma)</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/arzserpnt.jpg" alt="Rituais da Serpente" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Rituais da Serpente</div>
+                        <div class="gallery-category">Rito Oculto</div>
                     </div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="assets/album_five_sigils.png" alt="Altars and Sigils" class="gallery-img">
+                    <img src="assets/arzbanda.jpg" alt="Concerto Agaurez" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title" data-i18n="gallery-item-1-title">Liturgia de Belo Horizonte</div>
+                        <div class="gallery-category" data-i18n="gallery-item-1-cat">Ritual Oculto</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/arzbanda2.jpg" alt="Rito em Belo Horizonte" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Belo Horizonte Metal Extremo</div>
+                        <div class="gallery-category">Ao Vivo</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/arz4367_1006880037467131_3618837489297775772_n.jpg" alt="Registros do Abismo" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Registros do Abismo</div>
+                        <div class="gallery-category">Fotografia</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/IMG-20250611-WA0006.jpg" alt="Performances Profanas" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Performances Profanas</div>
+                        <div class="gallery-category">Ao Vivo</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/album_five_sigils.webp" alt="The Five Sigils Cover Art" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-title">The Five Sigils</div>
                         <div class="gallery-category" data-i18n="gallery-item-2-cat">Arte Conceitual</div>
@@ -348,6 +425,30 @@
                     <div class="gallery-overlay">
                         <div class="gallery-title" data-i18n="gallery-item-3-title">O Culto do Sigilo</div>
                         <div class="gallery-category" data-i18n="gallery-item-3-cat">Símbolo</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/AGAUREZ%20%C2%A9%20Lucas_Souza_3.jpg" alt="Chamas Profanas - Foto por Lucas Souza" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Chamas Profanas</div>
+                        <div class="gallery-category">Ao Vivo (Foto: Lucas Souza)</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/AGAUREZ%20%C2%A9%20Lucas_Souza_4.jpg" alt="Rito de Sangue - Foto por Lucas Souza" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Rito de Sangue</div>
+                        <div class="gallery-category">Ao Vivo (Foto: Lucas Souza)</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/band_members.jpeg" alt="Horda Agaurez - Retrato Promocional" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Retrato Promocional</div>
+                        <div class="gallery-category">A Horda</div>
                     </div>
                 </div>
 
@@ -364,7 +465,7 @@
                 <div class="merch-card">
                     <div class="merch-img-container">
                         <!-- INSERIR_MOCKUP_DA_CAMISA_AQUI -->
-                        <img src="assets/merch_tshirt.png" alt="Camisa Oficial Agaurez" class="merch-img">
+                        <img src="assets/merch_tshirt.jpg" alt="Camisa Oficial Agaurez" class="merch-img">
                     </div>
                     <div class="merch-info">
                         <div class="merch-details">
@@ -401,7 +502,7 @@
                 <!-- Product 3: CD Album -->
                 <div class="merch-card">
                     <div class="merch-img-container">
-                        <img src="assets/album_five_sigils.png" alt="CD The Five Sigils" class="merch-img">
+                        <img src="assets/album_five_sigils.webp" alt="CD The Five Sigils" class="merch-img">
                     </div>
                     <div class="merch-info">
                         <div class="merch-details">
@@ -501,13 +602,22 @@
     <!-- FOOTER BOTTOM -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">AGAUREZ</div>
-            <div class="footer-copy">&copy; 2026 AGAUREZ HORDA. Todos os ritos reservados. | <a href="https://www.agaurez.com" target="_blank" style="color: var(--color-gold-decay); text-decoration: none;">www.agaurez.com</a> | <a href="https://www.agaurez.com.br" target="_blank" style="color: var(--color-gold-decay); text-decoration: none;">www.agaurez.com.br</a></div>
+            <div class="footer-logo">
+                <img src="assets/agaurez_logo.svg" alt="AGAUREZ" class="footer-logo-svg">
+            </div>
+            <div class="footer-copy">&copy; 2026 AGAUREZ HORDA. Todos os ritos reservados. | <a href="https://www.agaurez.com" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold-decay); text-decoration: none;">www.agaurez.com</a> | <a href="https://www.agaurez.com.br" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold-decay); text-decoration: none;">www.agaurez.com.br</a></div>
             <div class="footer-credits">
                 Desenhado nas profundezas de Belo Horizonte | <a href="https://www.agaurez.com" target="_blank" rel="noopener noreferrer">BH Underground</a>
             </div>
         </div>
     </footer>
+
+    <!-- Lightbox Modal for Fullscreen Gallery Images -->
+    <div id="gallery-lightbox" class="lightbox-modal" aria-hidden="true">
+        <span class="lightbox-close" id="lightbox-close" aria-label="Fechar">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Visualização em alta resolução">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
 
     <!-- Web Audio API Sound FX Engine -->
     <script src="audio-fx.js"></script>

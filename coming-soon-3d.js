@@ -56,14 +56,14 @@ function init3DScene() {
     goldLight.penumbra = 0.9;
     scene.add(goldLight);
 
-    // PointLight 3: Pulsing Core Crimson (Behind Logo)
-    const coreLight = new THREE.PointLight(0x900c3f, 4, 20);
-    coreLight.position.set(0, 0, -2);
-    scene.add(coreLight);
-
     // 4. 3D LOGO EMBLEM
     const logoGroup = new THREE.Group();
     scene.add(logoGroup);
+
+    // PointLight 3: Pulsing Core Crimson (Behind Logo)
+    const coreLight = new THREE.PointLight(0x900c3f, 4, 20);
+    coreLight.position.set(0, 0, -2);
+    logoGroup.add(coreLight);
 
     // Fallback Canvas Texture Generator (Gothic Sigil & Typography)
     function createFallbackTexture() {
@@ -124,6 +124,62 @@ function init3DScene() {
     // Default Texture for Medallion
     let activeFrontTexture = createFallbackTexture();
 
+    // Back Texture with Serpent SVG
+    function createBackTexture() {
+        const canvasT = document.createElement('canvas');
+        canvasT.width = 1024;
+        canvasT.height = 1024;
+        const ctxT = canvasT.getContext('2d');
+
+        // Draw background (metallic disc with gold/red rings)
+        const gradT = ctxT.createRadialGradient(512, 512, 100, 512, 512, 512);
+        gradT.addColorStop(0, '#1a050d');
+        gradT.addColorStop(0.7, '#08080a');
+        gradT.addColorStop(1, '#000000');
+        ctxT.fillStyle = gradT;
+        ctxT.fillRect(0, 0, 1024, 1024);
+
+        // Gold & Crimson Rings
+        ctxT.strokeStyle = '#c5a059';
+        ctxT.lineWidth = 12;
+        ctxT.beginPath();
+        ctxT.arc(512, 512, 460, 0, Math.PI * 2);
+        ctxT.stroke();
+
+        ctxT.strokeStyle = '#900c3f';
+        ctxT.lineWidth = 6;
+        ctxT.beginPath();
+        ctxT.arc(512, 512, 440, 0, Math.PI * 2);
+        ctxT.stroke();
+
+        const tex = new THREE.CanvasTexture(canvasT);
+        tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+        // Load the serpent SVG
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = 'assets/arzserpnt.svg';
+        img.onload = () => {
+            ctxT.save();
+            // Invert color from black to white/silver and add glowing red drop shadow
+            ctxT.filter = 'invert(0.9) sepia(0.3) saturate(1.8) hue-rotate(320deg) drop-shadow(0 0 15px #c70039)';
+            
+            // Draw serpent centered and scaled
+            const size = 760;
+            const offset = (1024 - size) / 2;
+            ctxT.drawImage(img, offset, offset, size, size);
+            ctxT.restore();
+            tex.needsUpdate = true;
+            if (typeof backMaterial !== 'undefined') {
+                backMaterial.needsUpdate = true;
+            }
+        };
+
+        return tex;
+    }
+
+    let activeBackTexture = createBackTexture();
+
     // Front & Back Material for 3D Medallion
     const frontMaterial = new THREE.MeshStandardMaterial({
         map: activeFrontTexture,
@@ -134,7 +190,7 @@ function init3DScene() {
     });
 
     const backMaterial = new THREE.MeshStandardMaterial({
-        map: activeFrontTexture,
+        map: activeBackTexture,
         transparent: true,
         roughness: 0.35,
         metalness: 0.65,
@@ -300,9 +356,7 @@ function init3DScene() {
         const loadedTexture = new THREE.CanvasTexture(canvasCrop);
         loadedTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
         frontMaterial.map = loadedTexture;
-        backMaterial.map = loadedTexture;
         frontMaterial.needsUpdate = true;
-        backMaterial.needsUpdate = true;
     };
 
     // 5. 3D EMBER & ASH PARTICLES SYSTEM
@@ -386,6 +440,10 @@ function init3DScene() {
         logoGroup.rotation.y = elapsedTime * 0.3 + mouse.x * 0.6;
         logoGroup.rotation.x = Math.sin(elapsedTime * 0.8) * 0.08 - mouse.y * 0.4;
         logoGroup.position.y = Math.sin(elapsedTime * 1.5) * 0.25;
+
+        // Responsive medallion positioning (shift to right on desktop)
+        const isDesktop = window.innerWidth >= 768;
+        logoGroup.position.x = isDesktop ? 2.6 : 0;
 
         // Ouroboros Serpent gentle undulation
         if (ouroborosRing) {
